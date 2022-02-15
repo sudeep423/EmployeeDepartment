@@ -1,0 +1,152 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 HelveticaNeue;
+\f3\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red191\green100\blue38;\red32\green32\blue32;\red109\green109\blue109;
+\red88\green118\blue71;\red25\green25\blue25;\red255\green255\blue255;\red255\green255\blue254;\red0\green0\blue0;
+\red144\green1\blue18;\red19\green118\blue70;\red9\green60\blue148;}
+{\*\expandedcolortbl;;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c42745\c42745\c42745;
+\csgenericrgb\c34510\c46275\c27843;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;\cssrgb\c100000\c100000\c99608;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c1569\c31765\c64706;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh15180\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Database setup in application.properties file\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 spring.datasource.name \cf4 = \cf5 <Database name>\
+\cf2 spring.datasource.url \cf4 = \cf5 <Database url>\
+\cf2 spring.datasource.username \cf4 = \cf5 <Database userName>\
+\cf2 spring.datasource.password \cf4 = \cf5 <Database Password>\
+\cf2 spring.datasource.driver-class-name \cf4 = \cf5 com.mysql.cj.jdbc.Driver\
+\cf2 spring.jpa.properties.hibernate.dialect \cf4 = \cf5 org.hibernate.dialect.MySQL8Dialect\
+\cf2 spring.jpa.hibernate.ddl-auto \cf4 = \cf5 update\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+spring.cache.type=redis\
+spring.redis.host=localhost\
+spring.redis.port=<Port Number For Redis>\
+spring.cache.cache-names=Department\
+spring.cache.redis.cache-null-values=true\
+#spring.cache.redis.time-to-live=40000\
+\
+\
+\
+\
+APIs\
+\
+1 - Get All Employees\
+\
+Method - Get\
+url- 
+\f2 \cf6 \cb7 \expnd0\expndtw0\kerning0
+localhost:8080/employees\
+\
+2 - Get Employee By Id\
+\
+Method - Get\
+url - localhost:8080/employees/\{id\}\
+\
+3 - Add Employee\
+\
+Method - Post\
+url - localhost:8080/employees\
+\
+Note - By default employee will get assigned to department 0 which is null\
+\
+Request Body -  \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf0 \cb8 \{\cb1 \
+\cb8     \cf10 "id"\cf0 : \cf11 220\cf0 ,\cb1 \
+\cb8     \cf10 "employeeName"\cf0 : \cf12 \'93Ravi\'94\cf0 \cb1 \
+\cb8 \}\cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2 \cf6 \cb7 \
+4 - Update Employee To a Department\
+\
+Method - Put\
+url - localhost:8080/employees/\{employeeId\}/department/\{departmentId\}\
+\
+5 - Get all the employee of a specific department\
+\
+Method - Get\
+url - localhost:8080/employees/department/\{departmentId\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+6 - Update Employee \
+\
+Method - Put\
+url - 
+\f2 \cf6 \cb7 \expnd0\expndtw0\kerning0
+localhost:8080/employees/\{employeeId\}
+\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf0 \cb8 \expnd0\expndtw0\kerning0
+\{\cb1 \
+\cb8         \cf10 "id"\cf0 : \cf11 220\cf0 ,\cb1 \
+\cb8         \cf10 "employeeName"\cf0 : \cf12 \'93Sammer\'94\cf0 ,\cb1 \
+\cb8         \cf10 "department"\cf0 : \{\cb1 \
+\cb8             \cf10 "id"\cf0 : \cf11 1\cf0 ,\cb1 \
+\cb8             \cf10 "departmentName"\cf0 : \cf12 "backend"\cf0 \cb1 \
+\cb8         \}\cb1 \
+\cb8     \}\
+\
+7 - Delete Employee \
+\
+Method - Delete\
+url - 
+\f2 \cf6 \cb7 localhost:8080/employees/\{employeeId\}\
+\
+8 - Get All department\
+\
+Method - Get\
+Url - localhost:8080/department\
+\
+9 - Get Department By Id\
+\
+Method - Get\
+Url - localhost:8080/department/\{departmentId\}\
+\
+10 - Add Department \
+\
+Method - Post \
+Url - localhost:8080/department\
+\
+Request Body \
+
+\f3 \cf0 \cb8 \{\cb1 \
+\cb8     \cf10 "id"\cf0 : \cf11 100\cf0 ,\cb1 \
+\cb8     \cf10 "departmentName"\cf0 : \cf12 "Sales"\cf0 \cb1 \
+\cb8 \}\cb1 \
+\
+11 - Update Department\
+\
+Method - Put\
+Url - localhost:8080/department/\{departmentId\}\
+\
+Request Body\
+\cb8 \{\cb1 \
+\cb8     \cf10 "id"\cf0 : \cf11 100\cf0 ,\cb1 \
+\cb8     \cf10 "departmentName"\cf0 : \cf12 "Android"\cf0 \cb1 \
+\cb8 \}\
+\
+12 - Delete Department\
+\
+Method - Delete\
+Url - localhost:8080/department/\{departmentId\}\cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+ \
+\
+\
+}
